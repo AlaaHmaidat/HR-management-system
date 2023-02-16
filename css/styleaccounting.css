@@ -1,0 +1,21 @@
+main {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+table#employeeTable{
+
+    border-collapse: collapse;
+    display: flex;
+    justify-content: space-around;
+}
+td.styleth{
+    border: 0.5px solid;
+    padding: 5px;
+}
+th.styleth{
+    border: 0.5px solid;
+    padding: 5px;
+}

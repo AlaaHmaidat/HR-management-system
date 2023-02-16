@@ -1,4 +1,6 @@
 'use strict';
+
+let employeeArr = [];
 //BluePrint (constructor) to generate an employee object
 function EmployeeInfo(fullName, department, level, imageURL) {
     this.employeeID = randomID();
@@ -7,78 +9,127 @@ function EmployeeInfo(fullName, department, level, imageURL) {
     this.level = level;
     this.imageURL = imageURL;
     this.salary = 0;
+    employeeArr.push(this);
 }
 //prototype function for calculating the salary
 EmployeeInfo.prototype.salaryFunc = function () {
-
-    if (this.level === "Senior") {
+    console.log("aaaa");
+    if (this.level === "senior") {
         let randSalSenior = randomSalary(1500, 2000);
-        randSalSenior *= 0.075;
+        console.log(1500 * 0.075);
+        randSalSenior = randSalSenior - ((randSalSenior * 7.5) / 100);
+        console.log(randSalSenior);
         this.salary = Math.ceil(randSalSenior);
     }
-    else if (this.level === "Mid-Senior") {
+    else if (this.level === "mid-senior") {
         let randSalMidSenior = randomSalary(1000, 1500);
-        randSalMidSenior *= 0.075;
+        randSalMidSenior = randSalMidSenior - ((randSalMidSenior * 7.5) / 100);
         this.salary = Math.ceil(randSalMidSenior);
     }
     else {
         let randSalJunior = randomSalary(500, 1000);
-        randSalJunior *= 0.075;
+        randSalJunior = randSalJunior - ((randSalJunior * 7.5) / 100);
         this.salary = Math.ceil(randSalJunior);
     }
 }
+
 //random number between the minimum and maximum salary
 function randomSalary(min, max) {
     return (Math.random() * (max - min) + min);
 }
 
 //create a render prototype function to render each employee name with their salary in the home page
-let div = document.getElementById('EmployeeInfo');
-let table = document.createElement('table');
-div.appendChild(table);
 
-EmployeeInfo.prototype.render = function () {
-
+function render() {
     const container = document.getElementById('employee');
     console.log(container);
+    container.innerHTML = '';
 
-    const divEl = document.createElement('div');
-    container.appendChild(divEl);
-    // display employee ID 
-    const employeeIdEl = document.createElement('h3');
-    divEl.appendChild(employeeIdEl);
-    employeeIdEl.textContent = this.employeeID;
-    // display employee name 
-    const employeeNameEl = document.createElement('h3');
-    divEl.appendChild(employeeNameEl);
-    employeeNameEl.textContent = this.fullName;
-    // display employee Department 
-    const employeeDepartmentEl = document.createElement('h3');
-    divEl.appendChild(employeeDepartmentEl);
-    employeeDepartmentEl.textContent = this.department;
-    // display employee level 
-    const employeeLevelEl = document.createElement('h3');
-    divEl.appendChild(employeeLevelEl);
-    employeeLevelEl.textContent = this.level;
+    //get the arr from the localstorage
+    let jsonArr = localStorage.getItem("allEmployee");
+    employeeArr = JSON.parse(jsonArr);
 
-    // display employee img 
-    const imgEl = document.createElement('img');
-    divEl.appendChild(imgEl);
-    imgEl.setAttribute('src',this.imageURL);
-    imgEl.width = "150";
-    imgEl.height = "150";
 
-    // display employee salary 
-    const employeeSalaryEl = document.createElement('h3');
-    divEl.appendChild(employeeSalaryEl);
-    employeeSalaryEl.textContent = this.salary;
-    //console.log(container);
-    // document.write(`<table>${this.fullName} ${this.salary}</table>`);
+    if (employeeArr == null) //localstorage is empty
+    {
+        employeeArr = [];
+    }
+    for (let i = 0; i < employeeArr.length; i++) {
+
+        const fieldsetEl = document.createElement('fieldset');
+        fieldsetEl.setAttribute("id", "fieldsetid")
+        container.appendChild(fieldsetEl);
+
+        let divA = document.createElement('div');
+
+        let divM = document.createElement('div');
+
+        let divD = document.createElement('div');
+
+        let divF = document.createElement('div');
+
+            // display employee img 
+            const imgEl = document.createElement('img');
+            fieldsetEl.appendChild(imgEl);
+            imgEl.setAttribute('src', employeeArr[i].imageURL);
+            imgEl.width = "150";
+            imgEl.height = "150";
+
+            // display employee name 
+            const employeeNameEl = document.createElement('p');
+            fieldsetEl.appendChild(employeeNameEl);
+            const strNameCap = employeeArr[i].fullName.charAt(0).toUpperCase() + employeeArr[i].fullName.slice(1);
+            employeeNameEl.textContent = `Name: ${strNameCap}`
+            //let strName =employeeNameEl.innerText = "Name: ";
+            //employeeNameEl.textContent = strName + strNameCap;
+
+            // display employee ID 
+            const employeeIdEl = document.createElement('p');
+            fieldsetEl.appendChild(employeeIdEl);
+            employeeIdEl.textContent = `ID: ${employeeArr[i].employeeID}`;
+
+            // display employee Department 
+            const employeeDepartmentEl = document.createElement('p');
+            const strDeparCap = employeeArr[i].department.charAt(0).toUpperCase() + employeeArr[i].department.slice(1);
+            fieldsetEl.appendChild(employeeDepartmentEl);
+            employeeDepartmentEl.textContent = `Department: ${strDeparCap}`;
+
+            // display employee level 
+            const employeeLevelEl = document.createElement('p');
+            fieldsetEl.appendChild(employeeLevelEl);
+            const strLevelCap = employeeArr[i].level.charAt(0).toUpperCase() + employeeArr[i].level.slice(1);
+            employeeLevelEl.textContent = `Level: ${strLevelCap}`;
+
+            // display employee salary 
+            const employeeSalaryEl = document.createElement('p');
+            fieldsetEl.appendChild(employeeSalaryEl);
+            employeeSalaryEl.textContent = `Salary: ${employeeArr[i].salary}$`;
+
+            // if(this.department=="administration"){
+            //     divA.appendChild(fieldsetEl);  
+            // }
+            // else if(this.department=="marketing"){
+            //     divM.appendChild(fieldsetEl); 
+            // } 
+            // else if(this.department=="development"){
+            //     divD.appendChild(fieldsetEl); 
+            // }
+            // else {
+            //     divF.appendChild(fieldsetEl); 
+            // }
+
+
+    }
+
+
 }
+
 //Create a function to generate a unique four digits employee id number
 function randomID() {
-    let unique = new Date().valueOf();
-    return (String(unique).substring(0, 4));
+    // let unique = new Date().valueOf();
+    // return (String(unique).substring(0, 4));
+    let unique = Math.floor(1000 + Math.random() * 9000);
+    return unique;
 }
 
 //event listener to get the data from the form instead of having hard coded data
@@ -95,24 +146,13 @@ function addNewEmployeeHandler(event) {
 
     let newEmployee = new EmployeeInfo(EmployeeName, departmentName, Level, imgPath);
     newEmployee.salaryFunc();
-    newEmployee.render();
 
+    // convert into JSON then store the Arr in the local storage
+    let jsonArr = JSON.stringify(employeeArr);
+    localStorage.setItem("allEmployee", jsonArr);
 
+    render();
 }
-//...............
-let femalePic = './img/icon.png';
-let malePic = './img/maleicon.png';
-//let ghazi = new EmployeeInfo(1000, 'Ghazi Samer', 'Administration', 'Senior', malePic);
-// let lama = new EmployeeInfo(1001, 'Lana Ali', 'Finance', 'Senior', femalePic);
-// let tamara = new EmployeeInfo(1002, 'Tamara Ayoub', 'Marketing', 'Senior', femalePic);
-// let safi = new EmployeeInfo(1003, 'Safi Walid', 'Administration', 'Mid-Senior', malePic);
-// let omar = new EmployeeInfo(1004, 'Omar Zaid', 'Development', 'Senior', malePic);
-// let rana = new EmployeeInfo(1005, 'Rana Saleh', 'Development', 'Junior', malePic);
-// let hadi = new EmployeeInfo(1006, 'Hadi Ahmad', 'Finance', '	Mid-Senior', malePic);
-//ghazi.render(ghazi.salaryFunc(this.level));
-// lama.render(lama.salaryFunc(this.level));
-// tamara.render(tamara.salaryFunc(this.level));
-// safi.render(safi.salaryFunc(this.level));
-// omar.render(omar.salaryFunc(this.level));
-// rana.render(rana.salaryFunc(this.level));
-// hadi.render(hadi.salaryFunc(this.level));
+render();
+
+sessionStorage.setItem("employeeArr", employeeArr);
