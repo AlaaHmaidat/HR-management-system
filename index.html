@@ -19,6 +19,43 @@
   </header> 
   <main>
     <div id="EmployeeInfo"></div>
+    <form id="EmployeeInfoForm">
+            
+      <fieldset>
+          <legend>Add new employee</legend>
+
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" placeholder="John Doe">
+
+          <label for="department-select">Choose a departments:</label>
+
+          <select name="departments" id="department-select">
+              <option value="">--Please choose an option--</option>
+              <option value="administration">Administration</option>
+              <option value="marketing">Marketing</option>
+              <option value="development">Development</option>
+              <option value="finance">Finance</option>
+          </select>
+
+          <label for="Level-select">Choose a Level:</label>
+          <select name="Levels" id="Level-select">
+            <option value="">--Please choose an option--</option>
+            <option value="junior">Junior</option>
+            <option value="mid-senior">Mid-Senior</option>
+            <option value="senior">Senior</option>
+        </select>
+
+          <label for="imgUrl">Image</label>
+          <input type="text" name="imgUrl" id="imgUrl" placeholder="image path">
+
+          <input type="submit" value="Add">
+
+      </fieldset>
+  </form>
+  <div id="employee">
+    <br/>
+    <br/>
+  </div>
   </main> 
   <footer>
     <img src="./img/logo.png">
