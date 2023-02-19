@@ -1,11 +1,11 @@
 'use strict';
-let passEmpArr = sessionStorage.getItem("employeeArr");
-
+let passEmpArr = localStorage.getItem("employeeArr");
+console.log(passEmpArr);
 function render() {
 
     //get the arr from the localstorage
-    let jsonArr = localStorage.getItem("allEmployee");
-    employeeArr = JSON.parse(jsonArr);
+    // let jsonArr = localStorage.getItem("allEmployee");
+    // employeeArr = JSON.parse(jsonArr);
 
     // creates a <table> element and a <tbody> element
     const tbl = document.getElementById('employeeTable');
@@ -40,56 +40,43 @@ function render() {
             if (i > 0) {
                 const cell = document.createElement("td");
                 cell.classList.add("styleth");
-                if (i == 1 && j == 0) { //Number of employees (Administration)
-                }
-                else if (i == 2 && j == 0) {//Number of employees (Marketing)
-                    cell.textContent = `Marketing`;
-                }
-                else if (i == 3 && j == 0) {//Number of employees (Development)
-                    cell.textContent = `Development`;
-                }
-                else if (i == 4 && j == 0) {//Number of employees (Finance)
-                    cell.textContent = `Finance`;
-                }
-                else if (i == 1 && j == 1) {//Average salary (Administration)
+                if (i == 1 && j == 0) {//Department Name (Administration)
                     cell.textContent = `Administration`;
                 }
-                else if (i == 2 && j == 1) {//Average salary (Marketing)
+                else if (i == 2 && j == 0) {//Department Name (Marketing)
                     cell.textContent = `Marketing`;
                 }
-                else if (i == 3 && j == 1) {//Average salary (Development)
+                else if (i == 3 && j == 0) {//Department Name (Development)
                     cell.textContent = `Development`;
                 }
-                else if (i == 4 && j == 1) {//Average salary (Finance)
+                else if (i == 4 && j == 0) {//Department Name (Finance)
                     cell.textContent = `Finance`;
                 }
+                //.................................................................end the first column
+                else if (i == 1 && j == 1) {//Number of employees (Administration)
+                }
+                else if (i == 2 && j == 1) {//Number of employees (Marketing)
+                }
+                else if (i == 3 && j == 1) {//Number of employees (Development)
+                }
+                else if (i == 4 && j == 1) {//Number of employees (Finance)
+                }//.................................................................end the second column
                 else if (i == 1 && j == 2) {//Average salary (Administration)
-                    cell.textContent = `Administration`;
                 }
                 else if (i == 2 && j == 2) {//Average salary (Marketing)
-                    cell.textContent = `Marketing`;
                 }
                 else if (i == 3 && j == 2) {//Average salary (Development)
-                    cell.textContent = `Development`;
                 }
                 else if (i == 4 && j == 2) {//Average salary (Finance)
-                    cell.textContent = `Finance`;
-                }
+                }//.................................................................end the third column
                 else if (i == 1 && j == 3) {//Total salary (Administration)
-                    cell.textContent = `Administration`;
                 }
                 else if (i == 2 && j == 3) {//Total salary (Marketing)
-                    cell.textContent = `Marketing`;
                 }
                 else if (i == 3 && j == 3) {//Total salary (Development)
-                    cell.textContent = `Development`;
                 }
                 else {//Total salary (Finance)
-                    cell.textContent = `Finance`;
-                }
-
-                // const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
-                // cell.appendChild(cellText);
+                }//.................................................................end the fourth column
 
                 row.appendChild(cell);
             }

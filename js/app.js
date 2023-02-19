@@ -155,4 +155,4 @@ function addNewEmployeeHandler(event) {
 }
 render();
 
-sessionStorage.setItem("employeeArr", employeeArr);
+localStorage.setItem("employeeArr", employeeArr);
