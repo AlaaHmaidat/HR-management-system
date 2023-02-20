@@ -12,12 +12,12 @@ function render() {
     //creates a <table> element and a <tbody> element
     const tbl = document.getElementById('employeeTable');
     const tblBody = document.createElement("tbody");
-    let countA = 0, countM = 0, countD = 0, countF = 0;
-    let avgA = 0, avgM = 0, avgD = 0, avgF = 0;
-    let salA = 0, salM = 0, salD = 0, salF = 0;
+    let countA = 0, countM = 0, countD = 0, countF = 0, countTotal = 0;
+    let avgA = 0, avgM = 0, avgD = 0, avgF = 0 ,avgTotal=0;
+    let salA = 0, salM = 0, salD = 0, salF = 0 ,salTotal=0;
 
     //creating all cells
-    for (let i = 0; i < 5; i++) { //creating row
+    for (let i = 0; i < 6; i++) { //creating row
         //creates a table row
         const row = document.createElement("tr");
 
@@ -57,6 +57,8 @@ function render() {
                 }
                 else if (i == 4 && j == 0) {//Department Name (Finance)
                     cell.textContent = `Finance`;
+                } else if (i == 5 && j == 0) {//Total
+                    cell.textContent = `Total`;
                 }
                 //.................................................................end the first column
                 else if (i == 1 && j == 1) {//Number of employees (Administration)
@@ -91,6 +93,10 @@ function render() {
                             cell.textContent = countF;
                         }
                     }
+                }
+                else if (i == 5 && j == 1) {//Total Number of employees
+                    countTotal = countA + countM + countD + countF;
+                    cell.textContent = countTotal;
                 }//.................................................................end the second column
                 else if (i == 1 && j == 2) {//Average salary (Administration)
                     for (let a = 0; a < passEmpArr.length; a++) {
@@ -130,6 +136,11 @@ function render() {
                             cell.textContent = avgF;
                         }
                     }
+                }
+                else if (i == 5 && j == 2) {//Total for Average salary
+                    avgTotal=  avgA + avgM + avgD + avgF ;
+                    cell.textContent = avgTotal;
+
                 }//.................................................................end the third column
                 else if (i == 1 && j == 3) {//Total salary (Administration)
                     cell.textContent = salA;
@@ -143,9 +154,12 @@ function render() {
                     cell.textContent = salD;
 
                 }
-                else {//Total salary (Finance)
+                else if (i == 4 && j == 3){//Total salary (Finance)
                     cell.textContent = salF;
 
+                }else {//Total salary 
+                    salTotal =salA + salM + salD + salF;
+                    cell.textContent = salTotal;
                 }//.................................................................end the fourth column
 
                 row.appendChild(cell);
