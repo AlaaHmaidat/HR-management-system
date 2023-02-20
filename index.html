@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="./css/styleindex.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>HR management system</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="./css/styleindex.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>HR management system</title>
 </head>
+
 <body>
   <header>
     <img src="./img/logo.png">
     <nav>
-        <a href="./"> Home </a>
-        <a href="./accounting.html"> Accounting</a>
+      <a href="./"> Home </a>
+      <a href="./accounting.html"> Accounting</a>
     </nav>
-  </header> 
+  </header>
   <main>
-    <div id="EmployeeInfo"></div>
-    <form id="EmployeeInfoForm">
-            
-      <fieldset>
+    <div id="EmployeeInfo">
+      <form id="EmployeeInfoForm">
+
+        <fieldset>
           <legend>Add new employee</legend>
 
           <label for="name">Name:</label>
@@ -30,11 +32,11 @@
           <label for="department-select">Choose a departments:</label>
 
           <select name="departments" id="department-select">
-              <option value="">--Please choose an option--</option>
-              <option value="administration">Administration</option>
-              <option value="marketing">Marketing</option>
-              <option value="development">Development</option>
-              <option value="finance">Finance</option>
+            <option value="">--Please choose an option--</option>
+            <option value="administration">Administration</option>
+            <option value="marketing">Marketing</option>
+            <option value="development">Development</option>
+            <option value="finance">Finance</option>
           </select>
 
           <label for="Level-select">Choose a Level:</label>
@@ -43,24 +45,23 @@
             <option value="junior">Junior</option>
             <option value="mid-senior">Mid-Senior</option>
             <option value="senior">Senior</option>
-        </select>
+          </select>
 
           <label for="imgUrl">Image</label>
           <input type="text" name="imgUrl" id="imgUrl" placeholder="image path">
 
           <input type="submit" value="Add">
 
-      </fieldset>
-  </form>
-  <div id="employee">
-    <br/>
-    <br/>
-  </div>
-  </main> 
+        </fieldset>
+      </form>
+    </div>
+    <div id="employee"></div>
+  </main>
   <footer>
     <img src="./img/logo.png">
     <p> &copy; All right reserved </p>
-</footer>
-<script src="./js/app.js"></script>
+  </footer>
+  <script src="./js/app.js"></script>
 </body>
+
 </html>

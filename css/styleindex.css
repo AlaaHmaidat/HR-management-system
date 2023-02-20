@@ -1,12 +1,20 @@
-
 main {
     display: flex;
     margin-top: 100px;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     height: auto;
+    margin-bottom: 100px;
 }
-div#employee{
-    
 
+#fieldsetid {
+    background-color: #db6e6e;
+    padding: 10px;
+    display: inline;
+    margin: 10px;
+}
+
+div#EmployeeInfo {
+    display: flex;
+    justify-content: center;
 }
