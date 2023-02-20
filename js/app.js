@@ -49,6 +49,33 @@ function render() {
     let jsonArr = localStorage.getItem("allEmployee");
     employeeArr = JSON.parse(jsonArr);
 
+    let divA = document.createElement('div');
+    container.appendChild(divA);
+
+    const pA = document.createElement('p');
+    pA.textContent = `Administration Employee`
+    divA.appendChild(pA);
+
+    let divM = document.createElement('div');
+    container.appendChild(divM);
+
+    const pM = document.createElement('p');
+    pM.textContent = `Marketing Employee`
+    divM.appendChild(pM);
+
+    let divD = document.createElement('div');
+    container.appendChild(divD);
+
+    const pD = document.createElement('p');
+    pD.textContent = `Development Employee`
+    divD.appendChild(pD);
+
+    let divF = document.createElement('div');
+    container.appendChild(divF);
+
+    const pF = document.createElement('p');
+    pF.textContent = `Finance Employee`
+    divF.appendChild(pF);
 
     if (employeeArr == null) //localstorage is empty
     {
@@ -59,14 +86,6 @@ function render() {
         const fieldsetEl = document.createElement('fieldset');
         fieldsetEl.setAttribute("id", "fieldsetid")
         container.appendChild(fieldsetEl);
-
-        let divA = document.createElement('div');
-
-        let divM = document.createElement('div');
-
-        let divD = document.createElement('div');
-
-        let divF = document.createElement('div');
 
             // display employee img 
             const imgEl = document.createElement('img');
@@ -105,18 +124,18 @@ function render() {
             fieldsetEl.appendChild(employeeSalaryEl);
             employeeSalaryEl.textContent = `Salary: ${employeeArr[i].salary}$`;
 
-            // if(this.department=="administration"){
-            //     divA.appendChild(fieldsetEl);  
-            // }
-            // else if(this.department=="marketing"){
-            //     divM.appendChild(fieldsetEl); 
-            // } 
-            // else if(this.department=="development"){
-            //     divD.appendChild(fieldsetEl); 
-            // }
-            // else {
-            //     divF.appendChild(fieldsetEl); 
-            // }
+            if(employeeArr[i].department==="administration"){
+                divA.appendChild(fieldsetEl);  
+            }
+            else if(employeeArr[i].department==="marketing"){
+                divM.appendChild(fieldsetEl); 
+            } 
+            else if(employeeArr[i].department==="development"){
+                divD.appendChild(fieldsetEl); 
+            }
+            else {
+                divF.appendChild(fieldsetEl); 
+            }
 
 
     }
@@ -155,4 +174,4 @@ function addNewEmployeeHandler(event) {
 }
 render();
 
-localStorage.setItem("employeeArr", employeeArr);
+//localStorage.setItem("employeeArr", employeeArr);
